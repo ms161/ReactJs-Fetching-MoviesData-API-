@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useRef } from "react";
 
 import { useState } from "react";
@@ -13,9 +13,9 @@ function App() {
   async function fetchMoviesHandler() {
     try {
       setIsLoading(true);
-      const response = await fetch("https://swapi.dev/api/filmss");
+      const response = await fetch("https://swapi.dev/api/films");
 
-      console.log(response.ok);
+      console.log(!response.ok);
       if (!response.ok) {
         console.log("fetchmovies handler is running");
         throw new Error("Something went wrong! ");
@@ -32,11 +32,11 @@ function App() {
         };
       });
       setMovies(trasnformedMovies);
-     
     } catch (error) {
       console.log("catch");
       setError(error.message);
     }
+
     setIsLoading(false);
 
     console.log(error, "this fetch movies button is running");
@@ -44,9 +44,6 @@ function App() {
 
   console.log(error, "before if condition");
 
-  
- 
-  
   const onCancel = (e) => {
     console.log("clicked");
     // console.log(a)
@@ -55,46 +52,43 @@ function App() {
     console.log("clearinterval is also running");
     console.log(e);
   };
-  useEffect(()=>{
-    let a
-   console.log(error,'this is erorstate')
-    if(error){
-
-console.log('inside if condition')
-    a = setInterval(() => {
+  useEffect(() => {
+    fetchMoviesHandler()
+    let a;
+    console.log(error, "this is erorstate");
+    if (error) {
+      console.log("inside if condition");
+      a = setInterval(() => {
         fetchMoviesHandler();
-   
       }, 2000);
     }
-console.log('useeffect is running')
+    console.log("useeffect is running");
 
-    return ()=>  clearInterval(a)
+    return () => clearInterval(a);
 
-    
-      
-      // console.log('clearinterval running')
-    
-  },[error])
-  
+    // console.log('clearinterval running')
+  }, [error]);
+
   ///interval
   ///interval
   ///interval
 
   let content = <p>Found no Movies</p>;
-  if (movies.length > 0) {
-    content = <MoviesList movies={movies} />;
-  }
-  if (error) {
-    content = <p>{error}</p>;
-  }
-  if (isLoading) {
-    content = <p>Loading...</p>;
-  }
+ 
+if (movies.length > 0) {
+  content = <MoviesList movies={movies} />;
+}
+if (error) {
+  content = <p>{error}</p>;
+}
+if (isLoading) {
+  content = <p>Loading...</p>;
+}
 
   return (
     <React.Fragment>
       <section>
-        <button onClick={fetchMoviesHandler}>Fetch Movies</button>
+        <button >Fetch Movies</button>
       </section>
       <section>
         {content}
