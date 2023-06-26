@@ -1,0 +1,19 @@
+.title{
+    border-radius: 8px;
+    background-color: white;
+    width: 30rem;
+    height: 2rem;
+}
+.opening{
+
+    height: 10rem;
+    width: 30rem;
+    border-radius: 8px;
+    background-color: white;
+}
+.date{
+    border-radius: 8px;
+    background-color: white;
+    width: 30rem;
+    height: 2rem;
+}

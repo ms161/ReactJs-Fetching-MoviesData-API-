@@ -1,8 +1,7 @@
 import React, { useEffect, useMemo } from "react";
-import { useRef } from "react";
-
 import { useState } from "react";
 import MoviesList from "./components/MoviesList";
+import Form from "./components/Form";
 import "./App.css";
 
 function App() {
@@ -87,8 +86,10 @@ if (isLoading) {
 
   return (
     <React.Fragment>
-      <section>
-        <button >Fetch Movies</button>
+      <section style={{display:'flex' ,justifyContent:'center',alignItems:'center' ,flexDirection:'column'}} >
+       {useMemo(()=>  <Form></Form>,[])}
+      
+      
       </section>
       <section>
         {content}
