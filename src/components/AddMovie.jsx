@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import classes from "./Form.module.css";
-const Form = () => {
+const AddMovie = (props) => {
   const [text, setText] = useState();
   const [opening, setOpening] = useState();
   const [date, setDate] = useState();
@@ -19,13 +19,13 @@ const Form = () => {
   }
   let movieObj = {
     title: text,
-    opening: opening,
+    openingText: opening,
     date: date,
   };
 
   function submitHandler(e) {
     e.preventDefault();
-    console.log(movieObj);
+    props.onAddMovie(movieObj)
   }
   return (
     <>
@@ -85,4 +85,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default AddMovie;
